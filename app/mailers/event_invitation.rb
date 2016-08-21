@@ -1,5 +1,5 @@
 class EventInvitation < ApplicationMailer
-	default from: "learningforce@salesforce.com"
+	default from: "no-reply@learningforce.com"
 
 	def new_event( email, ics_content, event_name )
 	    attachments['invite.ics'] = ics_content
