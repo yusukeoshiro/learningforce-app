@@ -29,9 +29,8 @@ class PageController < ApplicationController
 			e.transp      = "OPAQUE"
 			e.attendee = Icalendar::Values::CalAddress.new("mailto:"+user["Email"], cn: user["Name"])
 		end
-
-		#cal.publish
 		cal.ip_method = "REQUEST"
+
 		EventInvitation.new_event(user["Email"], cal.to_ical , event["Name"] ).deliver_now
 		render :json => nil
 	end
