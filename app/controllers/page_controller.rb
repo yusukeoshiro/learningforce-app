@@ -43,6 +43,7 @@ class PageController < ApplicationController
 				e.transp      = "OPAQUE"
 				e.uid         = event["Id"]+"."+user["Email"]+".1" #first event
 				e.attendee = Icalendar::Values::CalAddress.new("mailto:"+user["Email"], cn: user["Name"])
+				e.location = event["location__c"]
 			end
 			cal.ip_method = "REQUEST"
 			p cal.to_ical
@@ -67,8 +68,6 @@ class PageController < ApplicationController
 
 
 			cal.event do |e|
-				p event["From1__c"]
-				p Time.parse( event["From1__c"] ).to_datetime
 				e.dtstart     = Time.zone.parse( event["From2__c"] )
 				e.dtend       = Time.zone.parse( event["To2__c"] )
 				e.summary     = event["Name"]
@@ -80,6 +79,7 @@ class PageController < ApplicationController
 				e.transp      = "OPAQUE"
 				e.uid         = event["Id"]+"."+user["Email"]+".2" # second event
 				e.attendee = Icalendar::Values::CalAddress.new("mailto:"+user["Email"], cn: user["Name"])
+				e.location = event["location__c"]
 			end
 			cal.ip_method = "REQUEST"
 			p cal.to_ical
@@ -113,6 +113,7 @@ class PageController < ApplicationController
 				e.transp      = "OPAQUE"
 				e.uid         = event["Id"]+"."+user["Email"]+".3" #third event
 				e.attendee = Icalendar::Values::CalAddress.new("mailto:"+user["Email"], cn: user["Name"])
+				e.location = event["location__c"]
 			end
 			cal.ip_method = "REQUEST"
 			p cal.to_ical
